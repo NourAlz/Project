@@ -1,0 +1,284 @@
+body{
+    background-color: #fff8e7;
+}
+
+/*common*/
+.cont{
+    margin-left: 5%;
+    margin-bottom: 30%;
+}
+
+.cont dl{
+    font-size: larger;
+    color: navy;
+}
+
+.up{
+    background: linear-gradient(372deg, #282322, #322c2ae6);
+    height: 200px;
+}
+
+nav{
+    float: right;
+    width: 700px;
+    padding-top: 5%;
+    font-size: larger;
+}
+
+nav a{
+    text-decoration: none;
+    color: white;
+}
+
+nav ul{
+    list-style: none;
+}
+
+nav li{
+    display: inline;
+    padding-left: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+}
+
+nav a:hover{
+    color: gold;
+    text-decoration: underline;
+}
+
+
+h1{
+    color: white;
+    padding-top: 5%;
+    padding-left: 10%;
+    font-size: 3rem;
+}
+
+h2{
+    font-size: 2rem;
+    color: #282322e6;
+}
+
+/*home page*/
+.bt{
+    width: 500px;
+    margin: auto;
+}
+
+.bt button{
+    background-color: #282322;
+    border: 2px solid #1a1a1a;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    height: 70px;
+    width: 200px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 150px;
+    text-align: center;
+}
+
+.bt button:hover{
+    box-shadow: #00000040 0 8px 15px;
+    transform: translateY(-2px);
+    color: gold;
+}
+
+.images{
+    margin: auto;
+    width: 500px;
+    height: 100%;
+    border-radius: 8px;
+    background-size: 100% 100%;
+    animation: slider 20s infinite linear;
+    display: block;
+}
+
+@keyframes slider{
+    0%,
+    20% {
+        background-image: url(images/q3.jpg);
+    }
+
+    25%,
+    55% {
+        background-image: url(images/q1.JPG);
+    }
+
+    60%,
+    80% {
+        background-image: url(images/q4.JPG);
+    }
+
+    85%,
+    100% {
+        background-image: url(images/q5.JPG);
+    }
+}
+
+/* Info */
+.info header{
+    height: 20rem;
+    background: linear-gradient(372deg, #282322, #322c2ae6);
+    border-radius: 10px;
+    text-align: left;
+    padding-left: 5%;
+}
+
+header h2{
+    text-indent: 30pt;
+    color: gold;
+}
+
+.info h1{
+    padding-left: 0;
+    padding-right: 5%;
+    margin-right: 2%;
+}
+
+.info nav{
+    margin-left: 5%;
+}
+
+.block1{
+    margin: 5% 5% 5% 5%;
+}
+
+.block1 div:hover{
+    padding-left: 5px;
+    border-left: 4px solid #282322;
+}
+
+.block1 img{
+    height: 200px;
+    width: 300px;
+    float: right;
+    margin-left: 2%;
+}
+
+.block1 p{
+    color: #282322e6;
+    font-size: 1.25rem;
+}
+
+.block2{
+    display: flex;
+    margin-bottom: 5%;
+}
+
+.block2 article{
+    flex: 1;
+    padding: 20px;
+    
+}
+
+.block2 div{
+    
+    height: 400px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+dl{
+    padding: 3% 3% 3% 3%;
+}
+
+dl dt{
+    font-weight: bold;
+    color: gold;
+    font-size: 2rem;
+    padding-top: 40%;
+}
+
+dl dd{
+    font-size: 1.2rem;
+    color: white;
+    padding-right: 5%;
+    padding-top: 3%;
+}
+
+/*Extra flipping*/
+.flip{
+    background: linear-gradient(372deg, #282322, #322c2ae6);
+    position: relative;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card:hover .flip{
+    transform: rotateY(180deg);
+}
+
+.front, .back{
+    background: linear-gradient(372deg, #282322, #322c2ae6);
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.back{
+    transform: rotateY(180deg);
+}
+
+
+.block3 article{
+    display: flex;
+}
+
+h4{
+    color: whitesmoke;
+}
+.boxInfo{
+    background-color: #282322;
+    width: 500px;
+}
+
+.boxInfo h2{
+    color: white;
+    padding-left: 2%;
+}
+
+.boxInfo a{
+    text-decoration: none;
+    font-size: large;
+}
+
+.boxInfo li{
+    color: #d5deef;
+}
+
+.boxInfo li h4:hover{
+    color: gold;
+}
+
+.text{
+    width: 500px;
+    padding-left: 5%;
+}
+
+.block3 p{
+    font-size: 1.25rem;
+    color: #282322e6;
+}
+
+.text:hover{
+    margin-left: 5%;
+    padding-left: 5px;
+    border-left: 4px solid #282322;
+}
+
+footer{
+    background-color: #282322;
+    color: white;
+    line-height: 3;
+    text-align: center;
+}
+
+footer p{
+    padding:3% 3% 3% 3%;
+    margin: 5% 5% 5% 5%;
+}

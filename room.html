@@ -1,0 +1,311 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Room</title>
+
+    <link rel="stylesheet" href="room.css">
+    <!--<script src="script.js"></script>-->
+</head>
+<body>
+    <div class="bar">
+        <nav>
+            <a href="home.html" target="_blank" id="back">Home</a>
+        </nav>
+
+        <div class="elements">
+            <div>
+                <button id="theme" onclick="theme()">Change Theme</button>
+            </div>
+            
+            <div>
+                <button class="media" onclick="appear()">Media Player</button>
+                <div id="vids">
+                    <h4>Piano</h4>
+                    <iframe width="640" height="360" src="https://www.youtube.com/embed/rBadprLH1jM" 
+                    title="Morning Piano Music | Piano music to Study, Work, Ambience,... 🎷 | Best Choice for Study, Work #2" 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; 
+                    web-share" allowfullscreen></iframe>
+
+                    <h4>Lofi Beats</h4>
+                    <iframe width="640" height="360" src="https://www.youtube.com/embed/l98w9OSKVNA" 
+                     title="12 A.M Study Session 📚 [lofi hip hop/chill beats]" frameborder="0" 
+                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; 
+                     web-share" allowfullscreen></iframe>
+
+                    <h4>EDM</h4>
+                    <iframe width="640" height="360" src="https://www.youtube.com/embed/LNWAcTIU1oQ" 
+                     title="DJVI YEARMIX 2022" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                     encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+            <script>
+                function appear(){
+                    let v = document.getElementById("vids");
+                    if(v.style.display === 'none'){
+                        v.style.display = 'block';
+                    }else{
+                        v.style.display = 'none';
+                    }
+                }
+            </script>
+
+        </div>
+    </div>
+    
+    <div class="room">  
+        <main>  
+            <button onclick="hide()" class="hideList" id="hl">&#8801</button>
+            <div id="block1">
+                <div class="list">
+                    <div class="e">
+                        <h3>To-Do List</h3>
+                        <input type="text" id="MyIn" placeholder="Task...">
+                        <span class="addbtn" onclick="newElement()">Add</span>
+                    </div>
+                    
+                    <ul id="UL">
+                        <li class="checked">Start Studying</li>
+                    </ul>
+                </div>
+
+                <script>
+                    //hiding the list
+                    function hide(){
+                        var block = document.getElementById("block1");
+                        if(block.style.display === "none"){
+                            block.style.display = "block";
+                        }else{
+                            block.style.display = "none";
+
+                        }
+                    }
+
+                    //creating the x button
+                    var nodes = document.getElementsByTagName('LI');
+                    for(var i =0; i < nodes.length; i++){
+                        var span = document.createElement("span");
+                        var x = document.createTextNode("\u00D7");
+                        span.className = "close";
+                        span.appendChild(x);
+                        nodes[i].appendChild(span);
+                    }
+
+                    var close = document.getElementsByClassName("close");
+                    for(var i =0; i< close.length; i++){
+                        close[i].onclick = function() {
+                            var div = this.parentElement;
+                            div.style.display = "none";
+                        }
+                    }
+
+                    //creating the check mark
+                    var list = document.getElementById("UL");
+                    list.addEventListener('click', function(ev) {
+                        if (ev.target.tagName === 'LI') {
+                            ev.target.classList.toggle('checked');
+                        }
+                    }, false);
+
+                    //adding tasks
+                    function newElement(){
+                        var li = document.createElement('LI');
+                        var value = document.getElementById("MyIn").value;
+                        var task = document.createTextNode(value);
+                        li.appendChild(task);
+
+                        if(value === ''){
+                            alert("What is the task?");
+                        }else{
+                            document.getElementById("UL").appendChild(li);
+                        }
+
+                        document.getElementById("MyIn").value = "";
+
+                        var span = document.createElement("SPAN");
+                        var txt = document.createTextNode("\u00D7");
+                        span.className = "close";
+                        span.appendChild(txt);
+                        li.appendChild(span);
+
+                        for (i = 0; i < close.length; i++) {
+                            close[i].onclick = function() {
+                                var div = this.parentElement;
+                                div.style.display = "none";
+                            }
+                        }
+                    }
+                </script>
+            </div>              
+            
+            <div class="timer"> 
+                <div class="ele">
+                    <div class="nums">                 
+                        <span id="hour">00</span>
+                        <span>:</span>
+                        <span id="minute">00</span>
+                        <span>:</span>
+                        <span id="second">00</span>
+                    </div> 
+                </div>
+        
+                <div class="bt">
+                    <button onclick="add()">+</button>
+                    <button onclick="start()"  id="play">&#9658</button> 
+                    <button onclick="reset()">&#8635</button>
+                </div>
+            </div>
+            <script>
+                var remain = 0;
+                var i = 0;
+        
+                function add(){
+                    var m = document.getElementById("minute").innerHTML;
+                    let t = parseInt(m);
+                    
+                    if(t+5 > 59){
+                        document.getElementById("minute").innerHTML = "00";
+                        var h = document.getElementById("hour").innerHTML;
+                        h = parseInt(h) + 1;
+                        document.getElementById("hour").innerHTML = h.toString().padStart(2, "0"); 
+                    }else{
+                        t += 5;
+                        document.getElementById("minute").innerHTML = t.toString().padStart(2, "0");
+                    }
+        
+                    i+=5;
+                    remain = i*60;
+                }
+        
+                function reset(){
+                    remain = 0;
+                    i = 0;
+                    document.getElementById("hour").innerHTML = "00";
+                    document.getElementById("minute").innerHTML = "00";
+                    document.getElementById("second").innerHTML = "00";
+                    document.getElementById("play").innerHTML = "&#9658;";
+                    document.getElementById("play").style.fontSize = "18px";
+                    
+                }
+        
+                let isPaused = false;
+                function start(){
+                    let sym = document.getElementById("play");
+        
+                    if(sym.innerHTML == decodeHtml("&#9658;")){
+                        sym.innerHTML = "▐▐ ";
+                        sym.style.fontSize = "10px";
+                        isPaused = false;               
+                    }else{
+                        sym.innerHTML = "&#9658;";
+                        sym.style.fontSize = "18px";
+                        isPaused = true;
+                        clearTimeout(timeoutId);
+                        return;
+                    }
+        
+                    if(remain == 0){
+                            alert("Already Finished!");
+                            document.getElementById("play").innerHTML = "&#9658;";
+                            document.getElementById("play").style.fontSize = "18px";
+                            return;
+                        }else{
+                            const delay = ms => {
+                                return new Promise(res => {
+                                timeoutId = setTimeout(res, ms);
+                            }); };
+        
+                            (async() => {
+                                do{
+                                    while(isPaused){
+                                        await delay(1000);
+                                    }
+        
+                                    remain--;
+                                    let h = Math.floor(remain/3600);
+                                    let m = Math.floor((remain%3600)/60);
+                                    let s = remain%60;
+        
+                                    console.log(m + " " + s);
+                                    document.getElementById("hour").innerHTML = h.toString().padStart(2, "0");
+                                    document.getElementById("minute").innerHTML = m.toString().padStart(2, "0");
+                                    document.getElementById("second").innerHTML = s.toString().padStart(2, "0");
+                                
+                                    await delay(1000);
+                                }while(remain > 0);
+        
+                                document.getElementById("play").innerHTML = "&#9658;";
+                                document.getElementById("play").style.fontSize = "18px";
+                                remain =0;
+                                i=0;
+                                alert("Time's Up!");
+                            })()
+                        } 
+                }
+        
+                function decodeHtml(html) {
+                    var txt = document.createElement("textarea");
+                    txt.innerHTML = html;
+                    return txt.value;
+                }
+        
+            </script>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let change = false;
+        var r = document.getElementsByClassName('room');
+        var b = document.getElementsByClassName('bar');
+        var nv = document.getElementById('back');
+        var t = document.getElementsByClassName('timer');
+        var sp = document.querySelectorAll(".nums span");
+        var bt = document.getElementsByTagName('button');
+
+        var h = document.getElementsByTagName('h3');
+        var k = document.getElementsByTagName('h4');
+        var l = document.getElementsByClassName('list');
+
+        function theme(){
+            if(change == false){
+                change = true;
+                nv.style.color = "#282322";
+
+                for(var k = 0; k < bt.length; k++){
+                    bt[k].style.background = "radial-gradient(100% 100% at 100% 0, #da5aff 0, #6854ff 100%)";
+                }
+
+                for(var j = 0; j < sp.length; j++){
+                    sp[j].style.color = "#282322";
+                }
+
+                for(let i = 0; i < r.length; i++) {
+                    r[i].style.background = "url('images/light.jpg') no-repeat center/cover";
+                    b[i].style.background = "#fff8e7";
+                    t[i].style.background = "#fff8e7"; 
+                    l[i].style.background = "#fff8e7";
+                    h[i].style.color = "#282322";
+                    k[i].style.color = "#282322";                           
+                }
+            }else{
+                change = false;
+                nv.style.color = "white";
+                for(var k = 0; k < bt.length; k++){
+                    bt[k].style.background = "radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%)";
+                }
+                for(var j = 0; j < sp.length; j++){
+                    sp[j].style.color = "white";
+                }
+                for(let i = 0; i < r.length; i++) {
+                    r[i].style.background = "url('header.png') no-repeat center/cover";
+                    b[i].style.background = "#282322";
+                    t[i].style.background = "#282322";
+                    l[i].style.background = "#282322";
+                    h[i].style.color = "white"; 
+                }
+            }
+        }
+    </script>
+</body>
+</html>
